@@ -1,0 +1,193 @@
+/* General Styles for Dark Theme */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    margin: 0;
+    padding: 0;
+    color: #e0e0e0;
+}
+
+header {
+    background: linear-gradient(90deg, #00c853, #00796b); /* Brighter green gradient */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+nav {
+    background-color: #1b1b1b; /* Deep black */
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #00c853; /* Brighter green on hover */
+    color: #121212;
+    border-radius: 5px;
+}
+
+/* Sections */
+section {
+    background-color: #1b1b1b; /* Darker background */
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    max-width: 900px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #00e676; /* Light green */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #00c853; /* Green border */
+    padding-bottom: 10px;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #b0b0b0;
+}
+
+/* Card Styles */
+.card {
+    background: #222; /* Almost black background */
+    border: 1px solid #333;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slight hover effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #00e676; /* Light green for headings */
+}
+
+.card p {
+    font-size: 1.4em;
+    color: #f4f4f4;
+}
+
+/* Chart Section */
+#chart-section {
+    margin-top: 30px;
+}
+
+/* Chart.js specific styles */
+canvas {
+    background-color: #1e1e1e; /* Dark background for charts */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    margin: 20px auto;
+}
+
+/* Footer */
+footer {
+    background-color: #1b1b1b; /* Darker footer */
+    color: #999;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Input Fields */
+input[type="number"] {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 2px solid #00c853;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px 0;
+    width: 100px;
+    font-size: 1em;
+}
+
+input[type="number"]:focus {
+    border-color: #00e676;
+    outline: none;
+}
+
+/* Buttons */
+button {
+    background-color: #00c853;
+    color: #121212;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00e676;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .card {
+        margin: 10px 0;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    canvas {
+        max-width: 100%;
+    }
+}
+

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronaut Health Dashboard</title>
+    <link rel="stylesheet" href="css.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js library -->
+    <style>
+        canvas {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+        }
+        .card {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Astronaut Health & Wellness Dashboard</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#health-metrics">Health Metrics</a></li>
+            <li><a href="#fitness">Fitness</a></li>
+            <li><a href="#nutrition">Nutrition</a></li>
+            <li><a href="#mental-health">Mental Health</a></li>
+            <li><a href="#radiation-exposure">Radiation Exposure</a></li>
+            <li><a href="#environment-monitoring">Environment Monitoring</a></li>
+            <li><a href="#sleep-monitoring">Sleep</a></li>
+            <li><a href="#chart-section">Charts</a></li>
+            <li><a href="#log-summary">Log</a></li>
+        </ul>
+    </nav>
+
+    <section id="overview">
+        <h2>Overview</h2>
+        <p>Welcome to the astronaut health and wellness dashboard. Monitor key health, fitness, and environmental indicators to ensure peak performance in space.</p>
+    </section>
+
+    <section id="health-metrics">
+        <h2>Health Metrics</h2>
+        <div class="card">
+            <h3>Heart Rate</h3>
+            <p id="heart-rate">-- bpm</p>
+        </div>
+        <div class="card">
+            <h3>Oxygen Levels</h3>
+            <p id="oxygen-levels">-- %</p>
+        </div>
+        <div class="card">
+            <h3>Blood Pressure</h3>
+            <p id="blood-pressure">-- / -- mmHg</p>
+        </div>
+        <div class="card">
+            <h3>Hydration Levels</h3>
+            <p id="hydration-levels">-- %</p>
+        </div>
+    </section>
+
+    <section id="fitness">
+        <h2>Fitness</h2>
+        <div class="card">
+            <h3>Steps Today</h3>
+            <p id="steps">-- steps</p>
+        </div>
+        <div class="card">
+            <h3>Calories Burned</h3>
+            <p id="calories-burned">-- kcal</p>
+        </div>
+    </section>
+
+    <section id="nutrition">
+        <h2>Nutrition & Diet Tracking</h2>
+        <div class="card">
+            <h3>Calories Consumed</h3>
+            <p id="calories-consumed">-- kcal</p>
+        </div>
+        <div class="card">
+            <h3>Protein Intake</h3>
+            <p id="protein-intake">-- g</p>
+        </div>
+        <div class="card">
+            <h3>Carbohydrates Intake</h3>
+            <p id="carbs-intake">-- g</p>
+        </div>
+        <div class="card">
+            <h3>Fat Intake</h3>
+            <p id="fat-intake">-- g</p>
+        </div>
+    </section>
+
+    <section id="mental-health">
+        <h2>Mental Health</h2>
+        <div class="card">
+            <h3>Stress Levels</h3>
+            <p id="stress-level">-- %</p>
+        </div>
+        <div class="card">
+            <h3>Mood Score</h3>
+            <p id="mood-score">-- / 10</p>
+        </div>
+    </section>
+
+    <section id="radiation-exposure">
+        <h2>Radiation Exposure</h2>
+        <div class="card">
+            <h3>Current Radiation Level</h3>
+            <p id="radiation-level">-- μSv</p>
+        </div>
+        <div class="card">
+            <h3>Cumulative Radiation Exposure</h3>
+            <p id="cumulative-radiation">-- μSv</p>
+        </div>
+    </section>
+
+    <section id="environment-monitoring">
+        <h2>Spacecraft Conditions</h2>
+        <div class="card">
+            <h3>Temperature</h3>
+            <p id="temperature">-- °C</p>
+        </div>
+        <div class="card">
+            <h3>Humidity</h3>
+            <p id="humidity">-- %</p>
+        </div>
+        <div class="card">
+            <h3>CO2 Levels</h3>
+            <p id="co2-levels">-- ppm</p>
+        </div>
+    </section>
+
+    <section id="sleep-monitoring">
+        <h2>Sleep Monitoring</h2>
+        <div class="card">
+            <h3>Hours Slept</h3>
+            <p id="hours-slept">-- hours</p>
+        </div>
+        <div class="card">
+            <h3>Sleep Efficiency</h3>
+            <p id="sleep-efficiency">-- %</p>
+        </div>
+    </section>
+
+    <section id="chart-section">
+        <h2>Metrics Over Time</h2>
+        <div class="card">
+            <h3>Heart Rate</h3>
+            <canvas id="heartRateChart"></canvas>
+        </div>
+        <div class="card">
+            <h3>Oxygen Levels</h3>
+            <canvas id="oxygenLevelChart"></canvas>
+        </div>
+        <div class="card">
+            <h3>Stress Levels</h3>
+            <canvas id="stressLevelChart"></canvas>
+        </div>
+    </section>
+
+    <section id="log-summary">
+        <h2>Daily Log Summary</h2>
+        <div id="daily-log-summary">
+            <ul id="messages-log">
+                <!-- Log details will be dynamically updated -->
+            </ul>
+        </div>
+    </section>
+
+    <section id="alerts">
+        <h2>Alerts</h2>
+        <div class="card">
+            <p id="alert-message">All metrics are within safe limits.</p>
+        </div>
+    </section>
+
+    <section id="task-management">
+        <h2>Mission Objectives</h2>
+        <div class="card">
+            <ul>
+                <li><input type="checkbox"> Check airlock seals</li>
+                <li><input type="checkbox"> Conduct spacewalk</li>
+                <li><input type="checkbox"> Calibrate equipment</li>
+                <li><input type="checkbox"> Log daily health metrics</li>
+            </ul>
+        </div>
+    </section>
+
+    <button id="download-data">Download Health Data</button>
+
+    <footer>
+        <p>&copy; 2024 Astronaut Health Dashboard</p>
+    </footer>
+
+    <script>
+        function getRandomValue(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function updateHealthMetrics() {
+            document.getElementById('heart-rate').textContent = getRandomValue(60, 100) + ' bpm';
+            document.getElementById('oxygen-levels').textContent = getRandomValue(95, 100) + ' %';
+            document.getElementById('blood-pressure').textContent = getRandomValue(110, 140) + ' / ' + getRandomValue(70, 90) + ' mmHg';
+            document.getElementById('hydration-levels').textContent = getRandomValue(50, 100) + ' %';
+            document.getElementById('steps').textContent = getRandomValue(5000, 15000) + ' steps';
+            document.getElementById('calories-burned').textContent = getRandomValue(1500, 3000) + ' kcal';
+            document.getElementById('calories-consumed').textContent = getRandomValue(1800, 2500) + ' kcal';
+            document.getElementById('protein-intake').textContent = getRandomValue(50, 150) + ' g';
+            document.getElementById('carbs-intake').textContent = getRandomValue(200, 400) + ' g';
+            document.getElementById('fat-intake').textContent = getRandomValue(50, 100) + ' g';
+            document.getElementById('stress-level').textContent = getRandomValue(10, 70) + ' %';
+            document.getElementById('mood-score').textContent = getRandomValue(5, 10) + ' / 10';
+            document.getElementById('radiation-level').textContent = getRandomValue(100, 300) + ' μSv';
+            document.getElementById('cumulative-radiation').textContent = getRandomValue(1000, 20000) + ' μSv';
+            document.getElementById('temperature').textContent = getRandomValue(18, 25) + ' °C';
+            document.getElementById('humidity').textContent = getRandomValue(30, 60) + ' %';
+            document.getElementById('co2-levels').textContent = getRandomValue(400, 1000) + ' ppm';
+            document.getElementById('hours-slept').textContent = getRandomValue(5, 8) + ' hours';
+            document.getElementById('sleep-efficiency').textContent = getRandomValue(80, 95) + ' %';
+        }
+
+        function checkCriticalLevels() {
+            const heartRate = getRandomValue(60, 100);  // Example
+            if (heartRate > 90) {
+                document.getElementById('alert-message').textContent = "Warning: High Heart Rate Detected!";
+                document.getElementById('alert-message').style.color = 'red';
+            } else {
+                document.getElementById('alert-message').textContent = "All metrics are within safe limits.";
+                document.getElementById('alert-message').style.color = 'green';
+            }
+        }
+
+        function updateMessagesLog() {
+            const messageLog = document.getElementById('messages-log');
+            messageLog.innerHTML = "";  // Clear previous messages
+            const messages = [
+                "12:30 PM: Heart rate exceeded 90 bpm.",
+                "1:00 PM: Communication with mission control established.",
+                "1:15 PM: Oxygen levels stable at 97%.",
+            ];
+            messages.forEach(msg => {
+                const li = document.createElement('li');
+                li.textContent = msg;
+                messageLog.appendChild(li);
+            });
+        }
+
+        function downloadCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,"
+                + "Heart Rate,Oxygen Levels,Blood Pressure,Steps,Calories,Stress Levels\n"
+                + "80,97,120/80,10000,2000,50\n";  // Example data
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "astronaut_health_data.csv");
+            document.body.appendChild(link);
+            link.click();
+        }
+
+        function createChart(chartId, chartLabel, chartData, chartColor) {
+            const ctx = document.getElementById(chartId).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['10 AM', '11 AM', '12 PM', '1 PM', '2 PM'],
+                    datasets: [{
+                        label: chartLabel,
+                        data: chartData,
+                        borderColor: chartColor,
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart data
+        createChart('heartRateChart', 'Heart Rate', [70, 75, 80, 90, 85], 'red');
+        createChart('oxygenLevelChart', 'Oxygen Levels', [98, 97, 99, 96, 97], 'blue');
+        createChart('stressLevelChart', 'Stress Levels', [40, 45, 50, 55, 60], 'green');
+
+        // Update health metrics and alerts periodically
+        setInterval(updateHealthMetrics, 5000);  // Update every 5 seconds
+        setInterval(checkCriticalLevels, 5000);  // Check every 5 seconds
+        updateMessagesLog();  // Populate the message log on load
+
+        // Event listener for CSV data download
+        document.getElementById("download-data").addEventListener("click", downloadCSV);
+    </script>
+</body>
+</html>
